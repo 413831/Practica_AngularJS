@@ -53,6 +53,12 @@ import { MapaDeGoogleComponent } from './componentes/mapa-de-google/mapa-de-goog
 import { AgmCoreModule } from '@agm/core';
 import { InputJugadoresComponent } from './componentes/input-jugadores/input-jugadores.component';
 import { SexoPipe } from './pipes/sexo.pipe';
+import { PiedraPapelTijeraComponent } from './componentes/piedra-papel-tijera/piedra-papel-tijera.component';
+
+import { MataAlVirusComponent } from './componentes/mata-al-virus/mata-al-virus.component';
+import { TaTeTiComponent } from './componentes/ta-te-ti/ta-te-ti.component';
+import { JuegosPipe } from './pipes/juegos.pipe';
+import { JugadorDetalleComponent } from './componentes/jugador-detalle/jugador-detalle.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +84,12 @@ import { SexoPipe } from './pipes/sexo.pipe';
     MapaDeGoogleComponent,
     JugadoresListadoComponent,
     InputJugadoresComponent,
-    SexoPipe
+    SexoPipe,
+    PiedraPapelTijeraComponent,
+    MataAlVirusComponent,
+    TaTeTiComponent,
+    JuegosPipe,
+    JugadorDetalleComponent
   ],
   imports: [
     BrowserModule,
@@ -95,4 +106,6 @@ import { SexoPipe } from './pipes/sexo.pipe';
   providers: [ JuegoServiceService, MiHttpService,PaisesService,ArchivosJugadoresService,JugadoresService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  
+}

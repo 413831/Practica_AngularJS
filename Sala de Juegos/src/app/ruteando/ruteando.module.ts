@@ -21,6 +21,11 @@ import { QuienSoyComponent } from '../componentes/quien-soy/quien-soy.component'
 import { ListadoDePaisesComponent } from '../componentes/listado-de-paises/listado-de-paises.component'
 import { MapaDeGoogleComponent } from '../componentes/mapa-de-google/mapa-de-google.component'
 import { JugadoresListadoComponent } from '../componentes/jugadores-listado/jugadores-listado.component';
+import { PiedraPapelTijeraComponent } from '../componentes/piedra-papel-tijera/piedra-papel-tijera.component';
+import { MataAlVirusComponent } from '../componentes/mata-al-virus/mata-al-virus.component';
+import { AnagramaComponent } from '../componentes/anagrama/anagrama.component';
+import { TaTeTiComponent } from '../componentes/ta-te-ti/ta-te-ti.component';
+import { JugadorDetalleComponent } from '../componentes/jugador-detalle/jugador-detalle.component';
 
 
 // declaro donde quiero que se dirija
@@ -34,7 +39,7 @@ const MiRuteo = [
 {path: 'Principal' , component: PrincipalComponent},
 {path: 'Listado' , component: ListadoComponent},
 {path: 'Paises' , component: ListadoDePaisesComponent},
-
+{path: 'MisDatos' , component: JugadorDetalleComponent},
 { path: 'Juegos' ,
 component: JuegosComponent ,
 children:
@@ -42,7 +47,12 @@ children:
      {path: 'Adivina' , component: AdivinaElNumeroComponent},
       {path: 'AdivinaMasListado' , component: AdivinaMasListadoComponent},
       {path: 'AgilidadaMasListado' , component: AgilidadMasListadoComponent},
-      {path: 'Agilidad' , component: AgilidadAritmeticaComponent}]
+      {path: 'Agilidad' , component: AgilidadAritmeticaComponent},
+      {path: 'Anagrama' , component: AnagramaComponent},
+      {path: 'Ta-te-ti' , component: TaTeTiComponent},
+      {path: 'PPT' , component: PiedraPapelTijeraComponent},
+      {path: 'MataVirus' , component: MataAlVirusComponent}
+    ]
 },
 {path: '**' , component: ErrorComponent},
 {path: 'error' , component: ErrorComponent}];

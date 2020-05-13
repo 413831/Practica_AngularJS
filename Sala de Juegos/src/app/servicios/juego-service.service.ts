@@ -3,64 +3,67 @@ import { Juego } from '../clases/juego';
 import { JuegoAdivina } from '../clases/juego-adivina';
 import { MiHttpService } from './mi-http/mi-http.service';
 
+import { environment } from '../../environments/environment';
+import { JuegoAnagrama } from '../clases/juego-anagrama';
+import { JuegoAgilidad } from '../clases/juego-agilidad';
+import { JuegoPiedraPapelTijera } from '../clases/juego-piedra-papel-tijera';
+import { HttpClient } from '@angular/common/http';
+import * as firebase from 'firebase';
+
 @Injectable()
 export class JuegoServiceService {
-
+  juegos: Juego[] = [];
+  private database;
+  private url = environment.database;
+  private json = environment.juegos;
   peticion:any;
-  constructor( public miHttp: MiHttpService ) {
-    this.peticion = this.miHttp.httpGetO("http://localhost:3003");
-//    this.peticion = this.miHttp.httpGetO("https://restcountries.eu/rest/v2/all");
+  
+  constructor( private http: HttpClient ) {
+    //this.peticion = this.http.httpGetO("http://localhost:3003");
+    // this.peticion = this.miHttp.httpGetO("https://restcountries.eu/rest/v2/all");
+    console.log("Juegos service");
+    this.database = firebase.database();
   }
 
-  public listar(): Array<Juego> {
-   this.miHttp.httpGetP("https://restcountries.eu/rest/v2/all")
-    .then( data => {
-      console.log( data );
-    })
-    .catch( err => {
-      console.log( err );
-    });
-
-
-    this.peticion
-    .subscribe( data => {
-      console.log("En listar");
-      console.log( data );
-    }, err => {
-      console.info("error: " ,err );
-    })
-
-    let miArray: Array<Juego> = new Array<Juego>();
-
-    miArray.push(new JuegoAdivina("Juego 1", false));
-    miArray.push(new JuegoAdivina("Pepe", true));
-    miArray.push(new JuegoAdivina("Juego 3", false));
-    miArray.push(new JuegoAdivina("Juego 4", false));
-    miArray.push(new JuegoAdivina("Juego 5", false));
-    miArray.push(new JuegoAdivina("Juego 6", false));
-    return miArray;
+  public crear(juego: Juego)
+  {
+      this.database.ref('juegos').push(juego).then(() => {
+        console.info("Alta exitosa");
+      }).catch(() => console.info("No se pudo realizar alta"));
   }
 
-  public listarPromesa(): Promise<Array<Juego>> {
-    this.peticion
-    .subscribe( data => {
-      console.log("En listarPromesa");
-      console.log( data );
-    }, err => {
-      console.log( err );
-    })
-    let promesa: Promise<Array<Juego>> = new Promise((resolve, reject) => {
-      let miArray: Array<Juego> = new Array<Juego>();
-      miArray.push(new JuegoAdivina("JuegoPromesa 1", false,"promesa"));
-      miArray.push(new JuegoAdivina("PepePromesa", true));
-      miArray.push(new JuegoAdivina("JuegoPromesa 3", false));
-      miArray.push(new JuegoAdivina("JuegoPromesa 4", false));
-      miArray.push(new JuegoAdivina("JuegoPromesa 5", false));
-      miArray.push(new JuegoAdivina("JuegoPromesa 6", false));
-      resolve(miArray);
-    });
+  public traerLocal(): Juego[] {
+    console.info("GET localstorage");
+    this.juegos = JSON.parse(localStorage.getItem("juegos"));
+    return this.juegos; 
+  }
 
-    return promesa;
+  public fetchAll() : Juego[]
+  {
+    this.juegos = [];
+    console.info("Fetch de todos los juegos");
+
+    this.database.ref('juegos').once('value').then((snapshot) => 
+    {
+        this.juegos = [];
+        snapshot.forEach((child) =>
+        {
+          // var data = child.val();
+          this.juegos.push(child.val());
+        });      
+        localStorage.setItem('juegos', JSON.stringify(this.juegos));
+    })
+    .catch((e) => console.info('Error. No se realizo el fetch: ' + e));
+    
+    return this.juegos;
+  }
+  
+  public listar(){
+
+  }
+
+  public listarPromesa(){
+  
   }
 
 }

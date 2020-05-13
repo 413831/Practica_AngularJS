@@ -2,16 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 import {Subscription, BehaviorSubject} from "rxjs";
+import { JugadoresService } from '../../servicios/jugadores.service';
+import { Jugador } from '../../clases/jugador';
+import { ArchivosJugadoresService } from '../../servicios/archivos-jugadores.service';
+import { HttpClient } from '@angular/common/http';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
   private subscription: Subscription;
-  usuario = '';
-  clave= '';
+  public jugador: Jugador;
   progreso: number;
   progresoMensaje="esperando...";
   logeando=true;
@@ -19,22 +22,45 @@ export class LoginComponent implements OnInit {
 
   clase="progress-bar progress-bar-info progress-bar-striped ";
 
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router) {
-      this.progreso=0;
+  constructor( private route: ActivatedRoute, private router: Router,
+    private servicio: JugadoresService) {
+     
+      this.jugador = new Jugador();
+      this.progreso = 0;
       this.ProgresoDeAncho="0%";
-
   }
 
   ngOnInit() {
   }
 
   Entrar() {
-    if (this.usuario === 'admin' && this.clave === 'admin') {
+    let jugador = this.existeJugador(this.jugador);
+
+    if(jugador || (this.jugador.email === 'admin' && this.jugador.clave === 'admin'))
+    {
+      console.info("Sesion iniciada");
+      this.servicio.iniciarSesion(jugador);
       this.router.navigate(['/Principal']);
     }
+    else
+    {
+      console.info("Usuario no encontrado");
+    }
   }
+
+  existeJugador(jugador: Jugador)
+  {
+    let data = this.servicio.traerLocal().find( datos => {
+      return datos.email === this.jugador.email && datos.clave === this.jugador.clave;
+      });
+
+    if(data != null)
+    {
+      return data;
+    }
+    return null;
+  }
+
   MoverBarraDeProgreso() {
 
     this.logeando=false;
@@ -75,7 +101,7 @@ export class LoginComponent implements OnInit {
           break;
       }
     });
-    //this.logeando=true;
+    this.logeando=true;
   }
 
 }

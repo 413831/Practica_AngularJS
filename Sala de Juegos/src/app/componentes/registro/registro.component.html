@@ -1,47 +1,90 @@
 <body>
-  <div class="jumbotron">
+  
+  <div class="jumbotron text-center m-auto">
     <h2 id="terminos">Terminos y condiciones</h2>
-    <p>El Gobierno de la República Argentina (en adelante el “Gobierno Nacional”) no es responsable por los daños y perjuicios que puedan surgir, incluyendo, sin límite, daños, pérdidas o gastos directos, indirectos, que surjan en relación con el uso de los Activos Digitales o la imposibilidad de uso, en relación con cualquier falla en el vencimiento, error, omisión, interrupción, defecto, demora en la operación o transmisión, virus de computadora o falla del sistema de línea, aún en el caso de que el Gobierno Nacional o sus representantes fueran informados sobre la posibilidad de dichos daños, pérdidas o gastos.</p>
-    <p>El Gobierno Nacional no controla ni garantiza la ausencia de virus ni de otros elementos en los contenidos que puedan producir alteraciones en su sistema informático (software y hardware) o en los documentos electrónicos y ficheros almacenados en su sistema informático.</p>
-    <p>El Gobierno Nacional no puede garantizar que la transmisión de información por parte de los Usuarios sea completamente segura. El Usuario asume este riesgo.</p>
-   
+    <p>Al acceder y navegar en el sitio de internet https://www.aplanes.com.ar (en adelante, el “Sitio”) el usuario (en adelante, el “Usuario”)
+       admite que ha leído, entendido y aceptado los términos y condiciones de uso de la página de Internet de la EMPRESA (en adelante, los “Términos y Condiciones”) sin restricciones, reservas ni modificaciones.
+        Por favor, lea correctamente los Términos y Condiciones antes de usar el Sitio .
+        El acceso al Sitio y su utilización, en cualquier forma, implica la aceptación y conocimiento por parte del Usuario de los Términos y Condiciones. Los Términos y Condiciones son obligatorios y vinculantes. 
+        En caso de que el Usuario no esté de acuerdo con los Términos y Condiciones, por favor no utilice el Sitio.
+         Cualquier persona que no acepte los Términos y Condiciones, los cuales tienen un carácter obligatorio y vinculante, deberá abstenerse de utilizar el Sitio.
+        El Usuario reconoce y acepta que el Sitio, como todos los contenidos provistos por la EMPRESA, ya sea cualquier documentación, 
+        archivo, material, aplicación, diseño, herramienta, composición musical, juego,
+         código fuente o cualquier tipo de obra o idea que sea una obra en el sentido de la legislación sobre propiedad intelectual se encuentra protegida bajo las leyes aplicables y es propiedad de la EMPRESA. 
+         Asimismo, quedan incluidas dentro del mismo reconocimiento las publicaciones, publicidades o información incorporadas al Sitio por anunciantes o terceras partes. </p>
   </div>
-  <strong><p>No leer lo anterior, es solo un ejemplo sacado de https://www.argentina.gob.ar/terminos-y-condiciones </p></strong>
-  <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Acepto</button>
-  <button  class="cancelbtn"  routerLink="/Principal" style="width:auto;">No acepto</button>
-  <div id="id01" class="modal">
-    <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
-    <form class="modal-content animate" >
-      <div class="container">
-        <label><b>Email</b></label>
-        <input type="text" placeholder="Ingresa tu correo" name="email" required>
-  
-        <label><b>Clave</b></label>
-        <input type="password" placeholder="Aca la clave" name="psw" required>
-  
-        <label><b>Repita la clave</b></label>
-        <input type="password" placeholder="Aca repeti la misa clave  de arriba" name="psw-repeat" required>
-        <input type="checkbox" checked="checked">Recordar mis datos
-        <p>creando la cuenta aceptando los<a  onclick="document.getElementById('id01').style.display='none'"  >Terminos y condiciones</a>.</p>
-  
-        <div class="clearfix">
-          <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Me arrepenti</button>
-          <button type="submit" class="signupbtn">Registrarme</button>
+  <div class="container-fluid align-self-baseline bg-light">
+    <strong><p>No leer lo anterior, es solo un ejemplo sacado de https://ar.todomoda.com/terminos-y-condiciones </p></strong>
+    <div class="col d-flex justify-content-center ">
+          <button class="btn-lg btn-success" data-toggle="modal" data-target="#exampleModalCenter">Acepto</button>
+          <button class="btn-lg btn-danger"  routerLink="/Principal">No acepto</button>
+        </div>
+  </div>    
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content bg-dark text-light">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Ingreso de usuario</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          
+          <div class="form-group ">
+            <label for="alias"><b>Alias</b></label>
+            <input [(ngModel)]='jugador.nombre' type="nombre" class="form-control" id="nombre" placeholder="Ingresa tu alias" name="nombre" required>
+          </div>
+
+          <div class="form-group ">
+            <label for="email"><b>Email</b></label>
+            <input [(ngModel)]='jugador.email' type="email" class="form-control" id="email" placeholder="Ingresa tu correo" name="email" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="clave"><b>Clave</b></label>
+            <input [(ngModel)]='jugador.clave' type="password" class="form-control" id="clave" placeholder="Ingresa tu clave" name="psw" required>
+          </div>
+          <div class="form-group">          
+            <input type="password" class="form-control" id="clave-repeat" placeholder="Re-ingresa tu clave" name="psw-repeat" required>
+          </div>
+          
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">Recordar mis datos</span>
+            </div>
+            <div class="input-group-text">
+              <input type="checkbox" >
+            </div>
+          </div>
+          
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">Acepta terminos y condiciones</span>
+            </div>
+            <div class="input-group-text">
+              <input type="checkbox" id="terminos-condiciones" (check)='checkTerminos = !checkTerminos'>
+            </div>
+          </div>
+        </div>
+        <div *ngIf='patternInvalido' class="d-flex justify-content-center">
+        <h6><span class="badge badge-danger"><b> Datos incorrectos.<br>Revise la clave ingresada<br> 
+            La clave debe contener al menos un número y un caracter especial</b></span></h6> 
+        </div>
+        <div *ngIf='!checkTerminos' class="d-flex justify-content-center">
+        <h6><span class="badge badge-warning"><b> Debe aceptar los terminos y condiciones</b></span></h6>
+        </div>
+        <div *ngIf='existe' class="d-flex justify-content-center">
+         <h6><span class="badge badge-info"><b> El usuario ya existe. Email ya está registrado</b></span></h6>
         </div>
       </div>
-    </form>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" data-dismiss="modal" (click)='validarDatos()'>¡Sí señor!</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">¡No quiero!</button>
+      </div>
+    </div>
   </div>
+</div>
   
-  <script>
-  // Get the modal
-  var modal = document.getElementById('id01');
-  
-  // When the user clicks anywhere outside of the modal, close it
-  window.onclick = function(event) {
-      if (event.target == modal) {
-          modal.style.display = "none";
-      }
-  }
-  </script>
-  
-  </body>
+</body>
