@@ -5,5 +5,12 @@ import { Component } from '@angular/core';
     templateUrl: './body.component.html'
 })
 export class BodyComponent{
+    mostrar = true;
+    frase: any = {
+        mensaje: 'Si la vida te da limones, haz limonada.',
+        autor: 'Ricardo Fort'
+    };
+personajes: string[] = ['Spiderman','Venom','Dr.Octopus','Carnage'];
+
 
 }
