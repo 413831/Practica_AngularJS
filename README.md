@@ -1,3 +1,3 @@
-# Practica_AngularJS
+# Practica_Angular
 
-Proyectos de practica con AngularJS
+Proyectos de practica con Angular
