@@ -1,5 +1,12 @@
 "use strict";
 (() => {
+    console.info("Clases en Typescript");
+    class Avenger {
+    }
+    const antman = new Avenger();
+    console.log(antman);
+})();
+(() => {
     /*
         Desestructuracion de Objetos y Arrays
     */
@@ -50,6 +57,21 @@
         }
     };
     hulk.smash();
+})();
+(() => {
+    console.info("Interfaces en Typescript");
+    const enviarMision = (xmen) => {
+        console.log(`Enviando a ${xmen.nombre} a la misión`);
+    };
+    const regresarAlCuartel = (xmen) => {
+        console.log(`Regresando a ${xmen.nombre} de la misión`);
+    };
+    const wolverine = {
+        nombre: 'Logan',
+        edad: 40
+    };
+    enviarMision(wolverine);
+    regresarAlCuartel(wolverine);
 })();
 // Funcion anonima autoinvocada
 (function () {

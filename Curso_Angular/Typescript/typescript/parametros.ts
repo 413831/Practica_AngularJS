@@ -19,4 +19,4 @@
     }
 
     activar('Gordon','tarde');
-})()
+})();
