@@ -1,6 +1,7 @@
 
 (()=>
 {
+
     const retirarDinero = ( montoRetirar: number): Promise<number> =>
     {
         let dineroActual = 1000;
