@@ -64,7 +64,18 @@ export class HeroesService{
     {
         return this.heroes;
     }
+
+    getHeroe(index: number)
+    {
+      if(index >= 0 && index < this.heroes.length)
+      {
+        return this.heroes[index];
+      }
+      return null;
+    }
 }
+
+
 
 export interface Heroe
 {
