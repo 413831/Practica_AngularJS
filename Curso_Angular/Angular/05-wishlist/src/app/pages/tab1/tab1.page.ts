@@ -17,7 +17,7 @@ export class Tab1Page {
  async agregarLista()
   {
     const alert = await this.alertControl.create({
-      cssClass: 'my-custom-class',
+      header: 'Crear lista',
       inputs: [
         {
           name: 'titulo',
@@ -51,4 +51,5 @@ export class Tab1Page {
 
     alert.present();
   }
+
 }

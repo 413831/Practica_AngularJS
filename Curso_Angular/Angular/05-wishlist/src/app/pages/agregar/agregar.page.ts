@@ -56,4 +56,10 @@ export class AgregarPage implements OnInit {
     this.wishlist.guardarStorage();
   }
 
+  borrar(i: number)
+  {
+    this.lista.items.splice(i,1);
+    this.wishlist.guardarStorage();
+  }
+
 }
