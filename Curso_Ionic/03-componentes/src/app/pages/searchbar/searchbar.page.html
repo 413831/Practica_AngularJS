@@ -15,7 +15,7 @@
 <ion-content>
 
   <ion-list>
-    <ion-item *ngFor="let album of albumes | filtro:termino">
+    <ion-item *ngFor="let album of albumes | filtro:termino: 'title'">
       {{ album.title }}
     </ion-item>
   </ion-list>
