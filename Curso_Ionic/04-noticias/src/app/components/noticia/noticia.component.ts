@@ -2,7 +2,10 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Article } from 'src/app/interfaces/interfaces';
 
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+
 import { ActionSheetController } from '@ionic/angular';
+import { DataLocalService } from 'src/app/services/data-local.service';
 
 @Component({
   selector: 'app-noticia',
@@ -13,7 +16,10 @@ export class NoticiaComponent implements OnInit {
   @Input() noticia: Article;
   @Input() numeroNoticia: number;
 
-  constructor(private iab: InAppBrowser, public actionSheetCtrl: ActionSheetController) { }
+  constructor(private iab: InAppBrowser, 
+              private actionSheetCtrl: ActionSheetController,
+              private socialSharing: SocialSharing,
+              private dataLocalService: DataLocalService) { }
 
   ngOnInit() { }
 
@@ -23,28 +29,31 @@ export class NoticiaComponent implements OnInit {
 
   async verMenu() {
     const actionSheet = await this.actionSheetCtrl.create({
-      cssClass: 'my-custom-class',
-      buttons: [,
+      buttons: [
         {
-          text: 'Share',
+          text: 'Compartir',
           icon: 'share',
-          cssClass: 'action-dark',
           handler: () => {
             console.log('Share clicked');
+            this.socialSharing.share(
+              this.noticia.title, 
+              this.noticia.source.name,
+              null,
+              this.noticia.url
+            );
           }
         },
         {
           text: 'Favoritos',
           icon: 'star',
-          cssClass: 'action-dark',
           handler: () => {
             console.log('Agregado a favoritos');
+            this.dataLocalService.guardarNoticia(this.noticia);
           }
         }, 
         {
           text: 'Cancelar',
           icon: 'close',
-          cssClass: 'action-dark',
           role: 'cancel',
           handler: () => {
             console.log('Cancel clicked');
