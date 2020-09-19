@@ -1,11 +1,15 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { Article } from 'src/app/interfaces/interfaces';
 
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
-import { ActionSheetController } from '@ionic/angular';
+import { ActionSheetController, AnimationController, ToastController } from '@ionic/angular';
 import { DataLocalService } from 'src/app/services/data-local.service';
+import { createAnimation, Animation } from '@ionic/core';
+
+
+
 
 @Component({
   selector: 'app-noticia',
@@ -15,19 +19,56 @@ import { DataLocalService } from 'src/app/services/data-local.service';
 export class NoticiaComponent implements OnInit {
   @Input() noticia: Article;
   @Input() numeroNoticia: number;
+  @Input() enFavoritos;
+
+  @ViewChild("noticia", { read: ElementRef, static: true }) tarjeta: ElementRef
+
 
   constructor(private iab: InAppBrowser, 
               private actionSheetCtrl: ActionSheetController,
               private socialSharing: SocialSharing,
-              private dataLocalService: DataLocalService) { }
+              private dataLocalService: DataLocalService,
+              private toastCtrl: ToastController) { }
 
   ngOnInit() { }
+
+
 
   abrirNoticia() {
     const browser = this.iab.create(this.noticia.url, '_system');
   }
 
   async verMenu() {
+
+    let botonGenerado;
+
+    if(this.enFavoritos)
+    {
+      botonGenerado =  {
+        text: 'Borrar Favorito',
+        icon: 'trash',
+        handler: () => {
+          console.log('Borrar de favoritos');
+          this.dataLocalService.borrarNoticia(this.noticia);
+          this.presentToast("Borrado de favoritos");
+        }
+      }
+
+    }
+    else
+    {
+      botonGenerado =  {
+        text: 'Favoritos',
+        icon: 'star',
+        handler: () => {
+          console.log('Agregado a favoritos');
+          this.dataLocalService.guardarNoticia(this.noticia);
+          this.presentToast("Agregado a favoritos");
+        }
+      }
+    }
+
+
     const actionSheet = await this.actionSheetCtrl.create({
       buttons: [
         {
@@ -43,14 +84,7 @@ export class NoticiaComponent implements OnInit {
             );
           }
         },
-        {
-          text: 'Favoritos',
-          icon: 'star',
-          handler: () => {
-            console.log('Agregado a favoritos');
-            this.dataLocalService.guardarNoticia(this.noticia);
-          }
-        }, 
+        botonGenerado,
         {
           text: 'Cancelar',
           icon: 'close',
@@ -63,6 +97,13 @@ export class NoticiaComponent implements OnInit {
     await actionSheet.present();
   }
 
+  async presentToast(message: string) {
+    const toast = await this.toastCtrl.create({
+      message,
+      duration: 2000
+    });
+    toast.present();
+  }
 
-
+  
 }
