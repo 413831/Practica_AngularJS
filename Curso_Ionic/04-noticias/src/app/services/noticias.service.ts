@@ -7,6 +7,7 @@ const apiKey = environment.apiKey;
 const apiUrl = environment.apiUrl;
 const headers = new HttpHeaders({
   'X-Api-key': apiKey,
+  'Authorization': apiKey
 });
 
 @Injectable({
