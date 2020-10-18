@@ -1,13 +1,16 @@
 
-<ion-content [fullscreen]="true">
+<ion-content color="dark">
 
-  <ion-slides mode="ios" pager="ios" scrollbar="ios">
-    <ion-slide *ngFor="let pelicula of peliculasRecientes">
-      <ion-card>
-        <img [src]="pelicula.backdrop_path | imagen" alt="poster">
-      </ion-card>
-      
-    </ion-slide>
-  </ion-slides>
+  <app-titulo titulo="Películas recientes"></app-titulo>
+
+  <app-slideshow-backdrop [peliculas]="peliculasRecientes"></app-slideshow-backdrop>
+
+  <app-titulo titulo="Cartelera"></app-titulo>
+
+  <app-slideshow-poster [peliculas]="peliculasRecientes"></app-slideshow-poster>
+
+  <app-titulo titulo="Populares"></app-titulo>
+
+  <app-slideshow-pares [peliculas]="populares" (eventoCargar)="cargarMas()"></app-slideshow-pares>
 
 </ion-content>

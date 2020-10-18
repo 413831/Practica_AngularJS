@@ -7,22 +7,35 @@ import { MovieService } from '../services/movie.service';
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss']
 })
-export class Tab1Page implements OnInit{
+export class Tab1Page implements OnInit{ 
   peliculasRecientes: Pelicula[] = [];
-  slidesOptions = {
-    slidesPerView: 1.3,
-    freeMode: true
-  };
-
+  populares: Pelicula[] = [];
+  
   constructor(private movieService: MovieService) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void 
+  {
     this.movieService.getRecientes()
-                    .subscribe( (resp) => {
-                      console.log('Respuesta',resp);
-                      this.peliculasRecientes = resp.results;
-                    });
+        .subscribe( (resp) => {
+          console.log('Respuesta',resp);
+          this.peliculasRecientes = resp.results;
+        });
+    this.getPopulares();
     
+  }
+
+  cargarMas()
+  {
+    this.getPopulares();
+  }
+
+  getPopulares()
+  {
+    this.movieService.getPopulares()
+        .subscribe( resp => {
+          const arrayAux = [...this.populares, ...resp.results];
+          this.populares = arrayAux;
+        })  
   }
 
 }
