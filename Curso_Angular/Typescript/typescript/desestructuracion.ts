@@ -9,7 +9,7 @@
     {
         nombre: 'Steve',
         clave:  'Capitán América',
-        poder:  'Droga'
+        poder:  'Capitalismo'
     }
 
     const extraerObjeto = ( { nombre, poder }: any ) => {
