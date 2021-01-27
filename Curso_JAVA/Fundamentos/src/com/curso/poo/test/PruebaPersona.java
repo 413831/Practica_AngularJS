@@ -1,16 +1,17 @@
-package com.curso.poo.clases;
+package com.curso.poo.test;
+
+import com.curso.poo.domain.Persona;
 
 public class PruebaPersona
 {
     public static void main(String[] args)
     {
         Persona persona1 = new Persona();
-        persona1.nombre = "Pepito";
-        persona1.apellido = "Lopez";
-        persona1.setSueldo(5000);
+        persona1.setNombre("Pepito");
+        persona1.setApellido("Lopez");
         persona1.mostrarInfo();
 
-        Persona persona2 = new Persona("Manuela","Obradora",80000,false);
+        Persona persona2 = new Persona("Manuela","Obradora",false);
         //persona2.mostrarInfo();
         System.out.println("persona2 = " + persona2);
     }
