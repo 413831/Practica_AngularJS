@@ -34,6 +34,7 @@ public class AccesoDatosImpl implements IAccesoDatos
             {
                 Pelicula pelicula = new Pelicula(linea);
                 peliculas.add(pelicula);
+                linea = entrada.readLine();
             }
         }
         catch (FileNotFoundException e)
@@ -47,7 +48,7 @@ public class AccesoDatosImpl implements IAccesoDatos
             throw new LecturaDatosEx("Excepcion al leer linea: " + e.getMessage());
         }
 
-        return null;
+        return peliculas;
     }
 
     @Override
@@ -57,10 +58,11 @@ public class AccesoDatosImpl implements IAccesoDatos
         try
         {
             PrintWriter salida = new PrintWriter(new FileWriter(archivo,anexar));
+
             // Se llama al método ToString
             salida.println(pelicula);
             salida.close();
-            System.out.println("Se ha escrito información al archivo: " + pelicula);
+            System.out.println("Se ha escrito información al archivo: " + nombreRecurso);
         }
         catch (IOException e)
         {
@@ -109,7 +111,7 @@ public class AccesoDatosImpl implements IAccesoDatos
     }
 
     @Override
-    public void cerrar(String nombreRecurso) throws AccesoDatosEx
+    public void crear(String nombreRecurso) throws AccesoDatosEx
     {
         File archivo = new File(nombreRecurso);
         try

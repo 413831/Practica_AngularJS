@@ -42,11 +42,11 @@ public interface IAccesoDatos
     String buscar(String nombreRecurso, String nombrePelicula) throws LecturaDatosEx;
 
     /**
-     * Cierra el recurso de acceso a datos
+     * Crea el recurso de acceso a datos
      * @param nombreRecurso Nombre del recurso físico
      * @throws AccesoDatosEx
      */
-    void cerrar(String nombreRecurso) throws AccesoDatosEx;
+    void crear(String nombreRecurso) throws AccesoDatosEx;
 
     /**
      * Borra el recurso de acceso a datos

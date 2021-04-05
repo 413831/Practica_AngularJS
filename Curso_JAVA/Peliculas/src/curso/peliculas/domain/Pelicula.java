@@ -10,7 +10,7 @@ public class Pelicula
 
     public Pelicula(String nombre)
     {
-
+        this.nombre = nombre;
     }
 
     // Getter & Setter
