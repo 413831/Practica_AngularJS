@@ -13,6 +13,8 @@ public class PersonaDAO
 {
     private static final String SQL_SELECT = "SELECT id_persona, nombre, apellido, email, telefono FROM Personas";
     private static final String SQL_INSERT = "INSERT INTO Personas(nombre, apellido, email, telefono) VALUES(?, ?, ?, ?)";
+    private static final String SQL_UPDATE = "UPDATE Personas SET nombre = ?, apellido = ?, email = ?, telefono = ? WHERE id_persona = ?";
+    private static final String SQL_DELETE = "DELETE FROM Personas WHERE id_persona = ?";
 
     public List<Persona> seleccionar()
     {
@@ -90,5 +92,71 @@ public class PersonaDAO
 
         }
         return registros;
+    }
+
+    public int actualizar(Persona persona)
+    {
+        Connection conexion = null;
+        PreparedStatement sentencia = null;
+        int registros = 0;
+
+        try
+        {
+            conexion = Conexion.getConnection();
+            sentencia = conexion.prepareStatement(SQL_UPDATE);
+            sentencia.setString(1, persona.getNombre());
+            sentencia.setString(2, persona.getApellido());
+            sentencia.setString(3, persona.getEmail());
+            sentencia.setString(4, persona.getTelefono());
+            sentencia.setInt(5, persona.getIdPersona());
+            registros = sentencia.executeUpdate();
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+        finally
+        {
+            try
+            {
+                Conexion.close(sentencia);
+                Conexion.close(conexion);
+            }
+            catch (SQLException throwables)
+            {
+                throwables.printStackTrace();
+            }
+        }
+        return registros;
+    }
+
+    public void eliminar(int idPersona)
+    {
+        Connection conexion = null;
+        PreparedStatement sentencia = null;
+
+        try
+        {
+            conexion = Conexion.getConnection();
+            sentencia = conexion.prepareStatement(SQL_DELETE);
+            sentencia.setInt(1,idPersona);
+            sentencia.executeUpdate();
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+        finally
+        {
+            try
+            {
+                Conexion.close(sentencia);
+                Conexion.close(conexion);
+            }
+            catch (SQLException throwables)
+            {
+                throwables.printStackTrace();
+            }
+        }
     }
 }
