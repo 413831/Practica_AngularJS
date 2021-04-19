@@ -13,7 +13,8 @@ export class AppComponent implements OnInit{
 
   constructor(private employeeService: EmployeeService){}
   
-  ngOnInit(): void {
+  ngOnInit(): void 
+  {
     this.getEmployees();
   }
 
