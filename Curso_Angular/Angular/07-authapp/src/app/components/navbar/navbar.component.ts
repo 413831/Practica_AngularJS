@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, Inject, OnInit } from '@angular/core';
+import { AuthService } from '@auth0/auth0-angular';
 import { LoginService } from 'src/app/services/auth.service';
 
 @Component({
@@ -7,14 +9,14 @@ import { LoginService } from 'src/app/services/auth.service';
   styles: [
   ]
 })
-export class NavbarComponent implements OnInit {
-  isLogged: boolean;
+export class NavbarComponent implements OnInit 
+{
+  constructor(@Inject(DOCUMENT) public document: Document,public auth: AuthService) { }
+  
 
-  constructor(public auth: LoginService) { }
-
-  ngOnInit(): void {
-    this.auth.isLogged().subscribe(isLogged => this.isLogged = isLogged);
-
+  ngOnInit(): void 
+  {
+     this.auth.isAuthenticated$.subscribe(x => console.log(x));
   }
-
 }
+

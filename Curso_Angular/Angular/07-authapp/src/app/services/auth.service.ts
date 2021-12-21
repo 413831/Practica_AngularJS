@@ -4,12 +4,12 @@ import { Injectable } from '@angular/core';
 
 // Import the AuthService type from the SDK
 import { AuthService } from '@auth0/auth0-angular';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class LoginService 
+{
 
   constructor(public auth: AuthService, @Inject(DOCUMENT) public document: Document) { }
 
@@ -23,7 +23,7 @@ export class LoginService {
     this.auth.logout({ returnTo: document.location.origin });
   }
 
-  isLogged(): Observable<boolean>
+  isLogged()
   {
     return this.auth.isAuthenticated$;
   }

@@ -7,15 +7,9 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-              <a class="nav-link" href="#">Add <span class="sr-only">(current)</span></a>
-          </li>
           
           <li class="nav-item">
-              <a class="nav-link disabled" href="#">Modify</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#">Delete</a>
+              <a class="nav-link " href="#" (click)="onOpenModal(null, 'add')">Add Employee<span class="sr-only">(current)</span></a>
           </li>
       </ul>
       <form class="form-inline mt-2 mt-md-0">
@@ -25,7 +19,7 @@
   </div>
 </div>
 
-<div class="container">
+<div class="container" id="main-container">
     <div class="row">
         <div class="col-md-3" *ngFor="let employee of employees">
             <div class="contact-box center-version">
@@ -42,12 +36,374 @@
                 </a>
                 <div class="contact-box-footer">
                     <div class="m-t-xs btn-group">
-                        <a class="btn btn-xs btn-white"><i class="fa fa-phone"></i> Call </a>
-                        <a class="btn btn-xs btn-white"><i class="fa fa-envelope"></i> Email</a>
-                        <a class="btn btn-xs btn-white"><i class="fa fa-user-plus"></i> Follow</a>
+                        <a (click)="onOpenModal(employee, 'update')" class="btn btn-xs btn-white">
+                            <i class="fa fa-pencil"></i>Edit</a>
+                        <a (click)="onOpenModal(employee, 'delete')" class="btn btn-xs btn-white">
+                            <i class="fa fa-times"></i>Delete</a>
                     </div>
                 </div>
         
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Add Employee Modal -->
+<script src="https://use.fontawesome.com/cb2d0db4c2.js"></script>
+
+           
+            <div aria-labelledby="exampleModalLabel" class="modal fade" id="exampleModal" role="dialog" tabindex="-1">
+                <div class="modal-dialog" role="document" id="addEmployeeModal">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button aria-label="Close" class="close" data-dismiss="modal" data-toggle="tooltip" title="Exit" type="button">
+                                <span aria-hidden="true">
+                                    ×
+                                </span>
+                            </button>
+                        </div>
+                            <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <h2 class="contact-title">
+                                        Add Employee
+                                    </h2>
+                                </div>
+                            </div>
+                            <div class="row">
+                                 <div class="col-sm-12">
+                                   
+                                    <div class="col-sm-12 box-separator">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="col-sm-6 col-sm-offset-3">
+                                                    <div class="col-sm-5 line-separator">
+                                                    </div>
+                                                    <div class="col-sm-2 icon-separator">
+                                                    </div>
+                                                    <div class="col-sm-5 line-separator">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <form class="form-horizontal">
+                                        <div class="form-group">
+                                            <div class="col-sm-6 col-sm-offset-3">
+                                                <div class="input-group margin-bottom-sm">
+                                                    <span class="input-group-addon">
+                                                        <i aria-hidden="true" class="fa fa-person-booth fa-fw">
+                                                        </i>
+                                                    </span>
+                                                    <input class="form-control" placeholder="Name" type="text">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-6 col-sm-offset-3">
+                                                <div class="input-group margin-bottom-sm">
+                                                    <span class="input-group-addon">
+                                                        <i aria-hidden="true" class="fa fa-envelope-square fa-fw">
+                                                        </i>
+                                                    </span>
+                                                    <input class="form-control" placeholder="Email Address" type="text">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-6 col-sm-offset-3">
+                                                <div class="input-group margin-bottom-sm">
+                                                    <span class="input-group-addon">
+                                                        <i aria-hidden="true" class="fa fa-phone fa-fw">
+                                                        </i>
+                                                    </span>
+                                                    <input class="form-control" placeholder="Phone" type="text">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-6 col-sm-offset-3">
+                                                <div class="input-group margin-bottom-sm">
+                                                    <span class="input-group-addon">
+                                                        <i aria-hidden="true" class="fa fa-signature fa-fw">
+                                                        </i>
+                                                    </span>
+                                                    <input class="form-control" placeholder="Job Title" type="text">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-6 col-sm-offset-3">
+                                                <div class="input-group margin-bottom-sm">
+                                                    <span class="input-group-addon">
+                                                        <i aria-hidden="true" class="fa fa-picture-o fa-fw">
+                                                        </i>
+                                                    </span>
+                                                    <input class="form-control" placeholder="Image Url" type="text">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                </div> 
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="row">
+                                <div class="col-sm-6 col-sm-offset-3 text-center">
+                                    <button class="btn btn-primary " id="btn-send-message" type="button">
+                                        Send message
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+ 
+<!-- Edit Employee Modal -->
+<script src="https://use.fontawesome.com/cb2d0db4c2.js"></script>
+<div class="container" id="updateEmployeeModal">
+    <div class="row">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+            <button class="btn btn-info" data-target="#exampleModal" data-toggle="modal" data-whatever="@getbootstrap" type="button">
+                <i aria-hidden="true" class="fa fa-angle-double-right">
+                </i>
+                Contac us
+            </button>
+            <div aria-labelledby="exampleModalLabel" class="modal fade" id="exampleModal" role="dialog" tabindex="-1">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button aria-label="Close" class="close" data-dismiss="modal" data-toggle="tooltip" title="Exit" type="button">
+                                <span aria-hidden="true">
+                                    ×
+                                </span>
+                            </button>
+                            <h4 class="modal-title" id="exampleModalLabel">
+                                <i class="fa fa-envelope-o">
+                                </i>
+                            </h4>
+                        </div>
+                            <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <h2 class="contact-title">
+                                        Follow us
+                                    </h2>
+                                </div>
+                            </div>
+                            <div class="row">
+                                 <div class="col-sm-12">
+                                    <div class="row">
+                                        <div class="col-sm-12 icons-container">
+                                            <ul class="text-center icon-list">
+                                                <a href="">
+                                                    <li id="facebook-circle">
+                                                        <span>
+                                                            <i class="fa fa-facebook fa-2x" id="facebook-icon">
+                                                            </i>
+                                                        </span>
+                                                    </li>
+                                                </a>
+                                                <a href="">
+                                                    <li id="twitter-circle">
+                                                        <span>
+                                                            <i class="fa fa-twitter fa-2x" id="twitter-icon">
+                                                            </i>
+                                                        </span>
+                                                    </li>
+                                                </a>
+                                                <a href="">
+                                                    <li id="youtube-circle">
+                                                        <span>
+                                                            <i class="fa fa-youtube-play fa-2x" id="youtube-icon">
+                                                            </i>
+                                                        </span>
+                                                    </li>
+                                                </a>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 box-separator">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="col-sm-6 col-sm-offset-3">
+                                                    <div class="col-sm-5 line-separator">
+                                                    </div>
+                                                    <div class="col-sm-2 icon-separator">
+                                                    </div>
+                                                    <div class="col-sm-5 line-separator">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <form class="form-horizontal">
+                                        <div class="form-group">
+                                            <div class="col-sm-6 col-sm-offset-3">
+                                                <div class="input-group margin-bottom-sm">
+                                                    <span class="input-group-addon">
+                                                        <i aria-hidden="true" class="fa fa-envelope-o fa-fw">
+                                                        </i>
+                                                    </span>
+                                                    <input class="form-control" placeholder="Email address" type="text">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-6 col-sm-offset-3">
+                                                <div class="input-group margin-bottom-sm">
+                                                    <span class="input-group-addon">
+                                                        <i aria-hidden="true" class="fa fa-question fa-fw">
+                                                        </i>
+                                                    </span>
+                                                    <input class="form-control" placeholder="Subject" type="text">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-6 col-sm-offset-3">
+                                                <div class="input-group margin-bottom-sm">
+                                                    <span class="input-group-addon">
+                                                        <i aria-hidden="true" class="fa fa-pencil fa-fw">
+                                                        </i>
+                                                    </span>
+                                                    <textarea class="form-control" rows="3">
+                                                    </textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div> 
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="row">
+                                <div class="col-sm-6 col-sm-offset-3 text-center">
+                                    <button class="btn btn-primary " id="btn-send-message" type="button">
+                                        Send message
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Employee Modal -->
+<script src="https://use.fontawesome.com/cb2d0db4c2.js"></script>
+<div class="container" id="deleteEmployeeModal">
+    <div class="row">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+            <button class="btn btn-info" data-target="#exampleModal" data-toggle="modal" data-whatever="@getbootstrap" type="button">
+                <i aria-hidden="true" class="fa fa-angle-double-right">
+                </i>
+                Contac us
+            </button>
+            <div aria-labelledby="exampleModalLabel" class="modal fade" id="exampleModal" role="dialog" tabindex="-1">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button aria-label="Close" class="close" data-dismiss="modal" data-toggle="tooltip" title="Exit" type="button">
+                                <span aria-hidden="true">
+                                    ×
+                                </span>
+                            </button>
+                            <h4 class="modal-title" id="exampleModalLabel">
+                                <i class="fa fa-envelope-o">
+                                </i>
+                            </h4>
+                        </div>
+                            <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <h2 class="contact-title">
+                                        Follow us
+                                    </h2>
+                                </div>
+                            </div>
+                            <div class="row">
+                                 <div class="col-sm-12">
+                                   
+                                    <div class="col-sm-12 box-separator">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="col-sm-6 col-sm-offset-3">
+                                                    <div class="col-sm-5 line-separator">
+                                                    </div>
+                                                    <div class="col-sm-2 icon-separator">
+                                                    </div>
+                                                    <div class="col-sm-5 line-separator">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <form class="form-horizontal">
+                                        <div class="form-group">
+                                            <div class="col-sm-6 col-sm-offset-3">
+                                                <div class="input-group margin-bottom-sm">
+                                                    <span class="input-group-addon">
+                                                        <i aria-hidden="true" class="fa fa-envelope-o fa-fw">
+                                                        </i>
+                                                    </span>
+                                                    <input class="form-control" placeholder="Email address" type="text">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-6 col-sm-offset-3">
+                                                <div class="input-group margin-bottom-sm">
+                                                    <span class="input-group-addon">
+                                                        <i aria-hidden="true" class="fa fa-question fa-fw">
+                                                        </i>
+                                                    </span>
+                                                    <input class="form-control" placeholder="Subject" type="text">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-6 col-sm-offset-3">
+                                                <div class="input-group margin-bottom-sm">
+                                                    <span class="input-group-addon">
+                                                        <i aria-hidden="true" class="fa fa-pencil fa-fw">
+                                                        </i>
+                                                    </span>
+                                                    <textarea class="form-control" rows="3">
+                                                    </textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div> 
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="row">
+                                <div class="col-sm-6 col-sm-offset-3 text-center">
+                                    <button class="btn btn-primary " id="btn-send-message" type="button">
+                                        Send message
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

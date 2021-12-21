@@ -14,12 +14,16 @@
       </ul>
       <span class="navbar-text">
         
-        <button *ngIf="!isLogged" class="btn btn-outline-primary" (click)="auth.login()">
-          Ingresar
-        </button>
-        <button *ngIf="isLogged" class="btn btn-outline-danger" (click)="auth.logout()">
+        <button *ngIf="auth.isAuthenticated$ | async; else loggedOut" class="btn btn-outline-danger" (click)="auth.logout({ returnTo: document.location.origin })">
           Salir
         </button>
+        <ng-template #loggedOut>
+          <button class="btn btn-outline-primary" (click)="auth.loginWithRedirect()">
+            Ingresar
+          </button>
+
+        </ng-template>
+        
 
       </span>
     </div>
