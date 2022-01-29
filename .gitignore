@@ -8,6 +8,14 @@
 # dependencies
 /node_modules
 
+# ionic
+platforms/android/build.xml
+platforms/android/gradlew
+platforms/android/gradlew.bat
+platforms/android/gradle
+platforms/android/build
+/www/*
+
 # IDEs and editors
 /.idea
 .project
@@ -39,6 +47,10 @@ project.lock.json
 .DS_Store
 *.pyc
 nupkg/
+platforms/
+plugins/
+resources/
+www/lib
 
 # e2e
 /e2e/*.js
