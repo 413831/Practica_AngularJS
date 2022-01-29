@@ -14,7 +14,7 @@ platforms/android/gradlew
 platforms/android/gradlew.bat
 platforms/android/gradle
 platforms/android/build
-/www/*
+www/
 
 # IDEs and editors
 /.idea
