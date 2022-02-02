@@ -3,3 +3,9 @@ export interface Message {
   Name: string,
   Text: string
 }
+
+export interface Response {
+  Success: number,
+  Message: string,
+  Data: any
+}

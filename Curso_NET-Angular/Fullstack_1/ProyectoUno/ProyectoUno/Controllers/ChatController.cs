@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using ProyectoUno.Models.Responses;
 using ProyectoUno.Models.ViewModels;
 
 namespace ProyectoUno.Controllers
@@ -29,6 +30,33 @@ namespace ProyectoUno.Controllers
                                          }).ToList();
 
             return list;
+        }
+
+        [HttpPost("[action]")]
+        public ResponseMessage Add([FromBody]MessageViewModel model)
+        {
+            ResponseMessage response = new ResponseMessage();
+
+            try
+            {
+                Models.Message oMessage = new Models.Message();
+
+                // Obtengo valores de Body del POST para Model
+                oMessage.Name = model.Name;
+                oMessage.Text = model.Text;
+                // Agrego objeto al contexto
+                this.db.Message.Add(oMessage);
+                // Ejecuto el INSERT
+                this.db.SaveChanges();
+
+                response.Success = 1;
+            }
+            catch(Exception ex)
+            {
+                response.Success = 0;
+                response.Message = ex.Message;
+            }
+            return response;
         }
     }
 }

@@ -1,7 +1,14 @@
 import { Injectable, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Message } from '../interfaces/interfaces';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Message, Response } from '../interfaces/interfaces';
 import { Observable } from 'rxjs/Observable';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization':'my-auth-token'
+  })
+}
 
 @Injectable({
   providedIn : 'root'
@@ -17,5 +24,15 @@ export class ChatService {
   public getMessages(): Observable<Message[]>
   {
     return this.http.get<Message[]>(this.baseUrl + "api/Chat/Messages");
+  }
+
+  public add(name: String, text: String)
+  {
+    this.http.post<Response>(this.baseUrl + "api/Chat/Add", { 'Name': name, 'Text': text }, httpOptions).
+        subscribe(result =>
+        {
+          console.log(result);
+        },
+        error => console.error(error));
   }
 }
