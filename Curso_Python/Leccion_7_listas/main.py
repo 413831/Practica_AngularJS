@@ -27,4 +27,7 @@ nombres.remove('Octavio')
 # Remover el ultimo valor de la lista
 nombres.pop()
 print(nombres)
+# eliminar un índice
+del nombres[0]
+print(nombres)
 
