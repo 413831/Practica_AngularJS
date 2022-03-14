@@ -14,16 +14,21 @@ def listarNombres(*nombres):
     for nombre in nombres:
         print(nombre)
 
-# Llamados
 
-listarNombres('Juan','Pepito','Marta','Hermeneguildo','Iñaki')
+def listarTerminos(nombre, *nombres, **terminos):
+    for llave, valor in terminos.items():
+        print(f'{llave}: {valor}')
 
-# resultado = sumar(5, 3)
-# print(resultado)
 
-# resultado = sumar()
-# print(resultado)
+def desplegarNombres(nombres):
+    for nombre in nombres:
+        print(nombre)
 
-# mi_funcion('Juan','Perez')
-# mi_funcion('Karla','Lara')
+
+nombres = ['Juan','Karla','Guillermo']
+desplegarNombres(nombres)
+desplegarNombres('Carlos')
+desplegarNombres((10,11))
+
+
 
