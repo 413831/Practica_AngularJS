@@ -7,7 +7,7 @@ print(f'Cálculo área cuadrado: {cuadrado1.calcular_area()}')
 
 # MRO - Method Resolution Order
 # nota: Se define en base al orden de cómo se heredan las clases
-print(Cuadrado.mro())
+# print(Cuadrado.mro())
 print(cuadrado1)
 
 print('Creación Objeto rectángulo'.center(50,'-'))
