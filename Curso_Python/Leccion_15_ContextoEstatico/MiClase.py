@@ -8,20 +8,21 @@ class MiClase:
     # Métodos estáticos
     # No acceden a variables de instancia
     @staticmethod
-    def metodoEstatico():
+    def metodo_estatico():
         print(MiClase.variable_clase)
 
+    @classmethod
+    def metodo_clase(cls, nombre):
+        print(cls.variable_clase)
+        print(nombre)
 
-miClase = MiClase('Valor variable instancia')
-print(miClase.variable_instancia)
-print(miClase.variable_clase)
+    def metodo_instancia(self):
+        self.metodo_clase('Llamado desde metodo de instancia')
+        self.metodo_estatico()
+        print(self.variable_clase)
+        print(self.variable_instancia)
 
-# Creacion de variable estática en tiempo de ejecución
-MiClase.variable_clase2 = 'Valor variable de clase 2'
 
-miClase2 = MiClase('Otro valor de instancia')
-print(miClase2.variable_instancia)
-print(miClase2.variable_clase)
-print(miClase2.variable_clase2)
-print(MiClase.variable_clase2)
-
+MiClase.metodo_clase("Pepito")
+objeto = MiClase('variable instancia')
+objeto.metodo_instancia()
