@@ -17,8 +17,11 @@ class Orden:
     def __str__(self):
         detalle_computadoras = ''
         for computadora in self._computadoras:
-            detalle_computadoras += f'\n{computadora.__str__()} '
-        return f'Orden {self._id_orden} {detalle_computadoras}'
+            detalle_computadoras += computadora.__str__()
+        return f'''
+        Orden: {self._id_orden} 
+        Computadoras: {detalle_computadoras}'
+        '''
 
     @property
     def id_orden(self):
