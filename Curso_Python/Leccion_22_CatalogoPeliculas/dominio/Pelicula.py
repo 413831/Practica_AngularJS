@@ -4,7 +4,7 @@ class Pelicula:
         self._nombre = nombre
 
     def __str__(self):
-        return  f'Pelicula: {self._nombre}'
+        return f'Pelicula: {self._nombre}'
 
     @property
     def nombre(self):
