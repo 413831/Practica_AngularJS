@@ -9,19 +9,20 @@ conexion = bd.connect(user='postgres',password='admin',host='127.0.0.1',port='54
 try:
     with conexion:
         with conexion.cursor() as cursor:
-            sentencia = 'DELETE FROM personas WHERE id_persona = ANY(%s)'
-            entrada = input('Proporciona los id_persona para eliminar (separado por comas): ')
-            llaves_primarias = entrada.split(',')
-            cursor.executemany(sentencia,[[llaves_primarias]])
-            # conexion.commit() # Se realiza automaticamente
-            registros_eliminados = cursor.rowcount
-            print(f'Registros Eliminados: {registros_eliminados}')
+            sentencia = 'INSERT INTO personas(nombre, apellido, email) VALUES(%s, %s, %s)'
+            valores = ('Andres', 'Paz', 'a.paz@mail.com')
+            cursor.execute(sentencia, valores)
+
+            sentencia = 'UPDATE personas SET nombre=%s, apellido=%s, email=%s WHERE id_persona=%s'
+            valores = ('Mariela', 'Arana', 'm.arana@mail.com', 3)
+            cursor.execute(sentencia, valores)
 except Exception as e:
-    print(f'Ocurrió un error: {e}')
+    print(f'Ocurrió un error, se hizo rollback: {e}')
 finally:
     conexion.close()
     # Se cierra conexión a base de datos
     # cursor.close()
+print('Termina la transacción, se hizo commit')
 
 # -- EJEMPLOS
 # sentencia = 'SELECT * FROM personas WHERE id_persona = %s'
