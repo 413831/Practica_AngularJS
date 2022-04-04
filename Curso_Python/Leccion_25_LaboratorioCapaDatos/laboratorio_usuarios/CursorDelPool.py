@@ -1,0 +1,2 @@
+class CursorDelPool:
+    pass

@@ -1,0 +1,2 @@
+class UsuarioDao:
+    pass
