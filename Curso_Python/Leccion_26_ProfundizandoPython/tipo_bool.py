@@ -44,3 +44,19 @@ print(f'Valor {valor}, resultado: {resultado}')
 valor = {'nombre':'Juan','apellido':'Perez'}
 resultado = bool(valor)
 print(f'Valor {valor}, resultado: {resultado}')
+
+variable = []
+if bool(variable):
+    print('Regresó verdadero')
+else:
+    print('Regreso falso')
+
+if variable:
+    print('Regresó verdadero')
+else:
+    print('Regreso falso')
+
+while variable:
+    print('Ejecución ciclo while')
+else:
+    print('Fin ciclo while')
