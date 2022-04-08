@@ -31,4 +31,8 @@ print('Inicia con: ',contenido.startswith('En GlobalMentoring.com.mx '))
 # endswith - termina con
 print('Termina con: ',contenido.lower().endswith('globalMentoring.com.mx'.lower()))
 
+# Verificar si todos los caracteres de un str estan en minúsculas o mayúsculas
+mensaje = 'Hola Mundo'
+print(mensaje.lower().islower())
+print(mensaje.upper().isupper())
 
