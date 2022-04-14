@@ -1,4 +1,4 @@
-# Ejemplo de herencia simple
+# Ejemplo de herencia multiple
 class ListaSimple:
     def __init__(self, elementos):
         self._elementos = list(elementos)
@@ -78,3 +78,13 @@ print(lista_enteros_ordenada)
 print(ListaEnterosOrdenada.__bases__)
 # MRO (Method Resolution Order)
 print(ListaEnterosOrdenada.__mro__)
+
+# isinstance
+print('Es entero?', isinstance(5,int))
+print('Es cedena?',isinstance('hola',str))
+print('Es lista enteros ordenada?', isinstance(lista_enteros_ordenada, ListaEnterosOrdenada))
+print('Es lista enteros ?', isinstance(lista_enteros_ordenada, ListaEnteros))
+print('Es lista ordenada ?', isinstance(lista_enteros_ordenada, ListaOrdenada))
+print('Es lista simple ?', isinstance(lista_enteros_ordenada, ListaOrdenada))
+print('Es object simple ?', isinstance(lista_enteros_ordenada, object))
+print('Es de varios tipos ?', isinstance(lista_enteros_ordenada, (ListaEnterosOrdenada, ListaSimple, ListaOrdenada)))
