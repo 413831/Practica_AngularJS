@@ -1,3 +1,4 @@
+import sys
 import tkinter as tk
 from tkinter import ttk, messagebox, Menu
 
@@ -51,6 +52,13 @@ def enviar():
     # Para hacer efectiva la selección del texto
     # entrada1.focus()
 
+def salir():
+    ventana.quit()
+    ventana.destroy()
+    print('Salimos...')
+    sys.exit()
+
+
 def crear_menu():
     # Configurar el menú principal
     menu_principal = Menu(ventana)
@@ -61,7 +69,7 @@ def crear_menu():
     # Agregar un separador
     submenu_archivo.add_separator()
     # Agregamos la opción de salir
-    submenu_archivo.add_command(label='Salir')
+    submenu_archivo.add_command(label='Salir', command=salir)
     # Agregamos el submenu al menú principal
     menu_principal.add_cascade(menu=submenu_archivo, label='Archivo')
     # Submenú ayuda
