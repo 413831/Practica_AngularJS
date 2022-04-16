@@ -1,5 +1,5 @@
 # GUI - Graphical User Interface
-# Tkinter - TK Interface
+# Leccion_27_Tkinter - TK Interface
 # Importamos el módulo tkinter
 import os
 import tkinter as tk
