@@ -30,7 +30,7 @@ class Editor(tk.Tk):
         # Se coloca Frame de forma vertical
         frame_botones.grid(row=0, column=0, sticky='ns')
         # Se agrega campo de texto
-
+        self.campo_texto.grid(row=0, column=1, sticky='ns')
 
 
 
