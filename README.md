@@ -18,6 +18,9 @@
 - Hibernate
 
 ## Python
+- Programación orientada a objetos
+- Postgresql
+- Tkinter
 
 ## Dart / Flutter
 
