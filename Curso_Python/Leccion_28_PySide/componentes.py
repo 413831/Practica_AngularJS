@@ -1,6 +1,6 @@
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QPixmap
-from PySide6.QtWidgets import QMainWindow, QLabel, QApplication, QCheckBox, QComboBox
+from PySide6.QtWidgets import QMainWindow, QLabel, QApplication, QCheckBox, QComboBox, QListWidget
 
 
 class Componentes(QMainWindow):
@@ -9,19 +9,53 @@ class Componentes(QMainWindow):
         self.setWindowTitle('Componentes')
         # self.setFixedSize(500, 600)
 
-        # Creamos un nuevo combo box (drop down list)
-        combobox = QComboBox()
+        # ** Componente QListWidget se parece al combobox
+        lista = QListWidget()
         # Agregamos elementos
-        combobox.addItem('Uno')
-        combobox.addItems(['Dos','Tres'])
-        # Monitoreamos el cambio de elemento seleccionado, tanto de índice como de texto
-        combobox.currentIndexChanged.connect(self.cambio_indice)
-        combobox.currentTextChanged.connect(self.cambio_texto)
+        lista.addItem('Uno')
+        lista.addItems(['Dos','Tres'])
+        # Monitoreamos el cambio del elemento seleccionado, tanto el elemento con el texto
+        lista.currentItemChanged.connect(self.cambio_elemento)
+        lista.currentTextChanged.connect(self.cambio_texto)
 
-        self.setCentralWidget(combobox)
+        # Publicamos este componente
+        self.setCentralWidget(lista)
+
+        # ** Creamos un nuevo combo box (drop down list) **
+        # combobox = QComboBox()
+        # # Agregamos elementos
+        # combobox.addItem('Uno')
+        # combobox.addItems(['Dos','Tres'])
+        # # ** Monitoreamos el cambio de elemento seleccionado, tanto de índice como de texto **
+        # combobox.currentIndexChanged.connect(self.cambio_indice)
+        # combobox.currentTextChanged.connect(self.cambio_texto)
+        # # Hacemos editable el combobox
+        # combobox.setEditable(True)
+
+        # ** Especificamos la política de inserción **
+        # No permite agregar nuevos elementos
+        # combobox.setInsertPolicy(QComboBox.NoInsert)
+        # Agregar al inicio de nuestro combobox
+        # combobox.setInsertPolicy(QComboBox.InsertAtTop)
+        # Modifica el elemento actual
+        # combobox.setInsertPolicy(QComboBox.InsertAtCurrent)
+        # Insertar al final
+        # combobox.setInsertPolicy(QComboBox.InsertAtBottom)
+        # Insertar antes del elemento actual
+        # combobox.setInsertPolicy(QComboBox.InsertBeforeCurrent)
+        # Insertar despues del elemento actual
+        # combobox.setInsertPolicy(QComboBox.InsertAfterCurrent)
+        # Insertar alfabeticamente
+        # combobox.setInsertPolicy(QComboBox.InsertAlphabetically)
+
+        # Limitamos cuantos elementos agregamos al combobox
+        # combobox.setMaxCount(6)
+
+        # Publicamos este componente
+        # self.setCentralWidget(combobox)
 
 
-        # Creamos un nuevo checkbox
+        # ** Creamos un nuevo checkbox **
         # checkbox = QCheckBox('Este es un checkbox')
         # # Activamos el tercer estado
         # # Tenemos 3 estados (0-Apagado, 1-Sin estado, 2-Seleccionado)
@@ -33,7 +67,7 @@ class Componentes(QMainWindow):
         # self.setCentralWidget(checkbox)
 
 
-        # Creamos un componente de tipo etiqueta (Label)
+        # ** Creamos un componente de tipo etiqueta (Label) **
         # etiqueta = QLabel('Hola')
         # etiqueta.setPixmap(QPixmap('layla.jpg'))
         # etiqueta.setScaledContents(True)
@@ -63,9 +97,12 @@ class Componentes(QMainWindow):
         else:
             print('Checkbox con estado inválido')
 
+
+    def cambio_elemento(self, nuevo_elemento):
+        print(f'Nuevo elemento seleccionado: {nuevo_elemento.text()}')
+
     def cambio_indice(self, nuevo_indice):
         print(f'Nuevo índice seleccionado: {nuevo_indice}')
-
 
     def cambio_texto(self, nuevo_texto):
         print(f'Nuevo texto: {nuevo_texto}')
