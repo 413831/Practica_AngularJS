@@ -35,5 +35,96 @@ for funcion in lista_funciones:
 print(lista_funciones[1]('Saludos desde variable función'))
 
 ######################
-#
+# Podemos pasar funciones a otras funciones
+# ** higher-order functions **
+def saludar(argumento_funcion):
+    # Se utiliza la funcion que se recibe como argumento y se devuelve la referencia
+    referencia_funcion_retornada = argumento_funcion('Hola, saludos desde mi función')
+    print(referencia_funcion_retornada)
+
+# Llamamos la función saludar
+saludar(mayusculas)
+
+# Pasar una nueva implementación de la función que pasamos como argumento
+def minusculas(texto):
+    return texto.lower()
+
+saludar(minusculas)
+
+# Funcion map()
+# toma una función como referencia, y un iterable
+print(list(map(mayusculas, ['texto1', 'texto2', 'texto3'])))
+print(list(map(minusculas, ['texto1', 'texto2', 'texto3'])))
+#######################
+# Funciones Anidadas
+def mostrar(texto):
+    # Definición de la función interna o anidada
+    def convertir_minusculas(t):
+        return t.lower()
+    # Una vez definida la función interna, la llamamos
+    return convertir_minusculas(texto)
+
+# Cada vez que se llama la función mostrar
+# se crea la función interna convertir_minusculas
+print(mostrar('Texto desde función anidada'))
+
+# No podemos utilizar la función interna desde fuera de la función externa
+# convertir_minusculas('texto1')
+# mostrar.convertir_minusculas('texto1')
+
+# Retornar la función anidada
+# Observar que en ningún momento se llama la función anidada desde la función externa
+def hablar(volumen):
+    def minusculas(texto):
+        return texto.lower()
+    def mayusculas(texto):
+        return texto.upper()
+    if volumen > 0.5:
+        return mayusculas
+    else:
+        return minusculas
+
+# Utilizamos la función anidada
+print(hablar(0.6)('Hablo fuerte'))
+print(hablar(0.3)('Hablo suave'))
+
+variable_minusculas = hablar(0.4)
+print(variable_minusculas('hablo suave nuevamente'))
+
+####################
+# Closures
+# Las funciones internas pueden capturar y guardar el estado de la función externa
+def hablar(texto, volumen):
+    # La función interna ya no recibe parámetros
+    # Utiliza el estado de la función padre (externa)
+    def minúsculas():
+        return texto.lower()
+    def mayúsculas():
+        return texto.upper()
+    if volumen > 0.5:
+        return mayúsculas()
+    else:
+        return minúsculas()
+
+print(hablar('hablo fuerte...', 0.8))
+print(hablar('hablo suave...', 0.3))
+
+# Otro ejemplo de closure
+# Podemos preconfigurar una función
+def mostrar(titulo):
+    # Definimos la función anidada
+    def saludar(mensaje):
+        return titulo + '. ' + mensaje
+    return saludar
+
+mostrar_ing = mostrar('Ingeniero')
+mostrar_lic = mostrar('Licenciado')
+# Podemos seguir usando el estado de la función previamente configurada
+# aunque el valor del título ya esté fuera del alcance (scope)
+print(mostrar_ing('Alvaro Ruiz'))
+print(mostrar_lic('Carlos Esparza'))
+
+
+
+
 
