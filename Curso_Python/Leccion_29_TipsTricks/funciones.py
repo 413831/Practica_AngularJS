@@ -124,6 +124,34 @@ mostrar_lic = mostrar('Licenciado')
 print(mostrar_ing('Alvaro Ruiz'))
 print(mostrar_lic('Carlos Esparza'))
 
+############################
+# La funcipón callable nos permite saber si un objeto se puede llamar o no
+# No todos los objetos son funciones
+print(f'Se puede llamar el objeto mostrar como función?: {callable(mostrar)}')
+print(f'Se puede llamar el objeto hablar como función?: {callable(hablar)}')
+print(f'Se puede llamar el objeto mostrar_ing como función?: {callable(mostrar_ing)}')
+print(f'Se puede llamar el objeto str como función?: {callable("cualquier texto")}')
+
+# Si queremos que una clase defina objetos que se puedan llamar como funciones
+# tenemos que sobreescribir el método __call__
+class Mostrar:
+    def __init__(self, titulo):
+        self.titulo = titulo
+
+    def __call__(self, mensaje):
+        return self.titulo + '. ' + mensaje
+
+mostrar_doctor = Mostrar('Doctor')
+print(mostrar_doctor('Carlos Ugalde'))
+print(f'Se puede llamar el objeto mostrar_doctor como una función?: {callable(mostrar_doctor)}')
+
+
+
+
+
+
+
+
 
 
 
