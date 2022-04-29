@@ -12,7 +12,9 @@ def bienvenido(request):
     # }
     # return render(request, 'bienvenido.html', mensajes)
     numero_personas = Persona.objects.count()
-    personas = Persona.objects.all()
+    # personas = Persona.objects.all()
+    # personas = Persona.objects.order_by('-id') Forma descendente
+    personas = Persona.objects.order_by('id', 'nombre')
     return render(request, 'bienvenido.html', {'numero_personas':numero_personas, 'personas':personas})
 
 def despedirse(args):
