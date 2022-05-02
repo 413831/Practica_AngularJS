@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Formularios en HTML</title>
+</head>
+<body>
+    <h1>Formularios en HTML</h1>
+    <!--form no validate-->
+    <form>
+        <label for="nombre">Nombre:</label><br/>
+        <input type="text" id="nombre" name="nombre" value="Nombre" placeholder="Escribe tu nombre" required="true"/><br/>
+
+
+        <label for="apellido">Apellido:</label><br/>
+        <input type="text" id="apellido" name="apellido" value="Apellido" placeholder="Escribe tu apellido" required="true"/><br/>
+
+        <label for="password">Password:</label><br/>
+        <input type="password" id="password" name="password" value="Password" required="true"/><br/>
+
+        <label for="email">Email:</label><br/>
+        <input type="email" id="email" name="email" value="Email" required="true"/><br/>
+
+        <label for="edad">Edad:</label><br/>
+        <input type="number" id="edad" name="edad" value="99" required="true"/><br/>
+
+        <input type="submit" value="Enviar"/>
+        <input type="submit" formnovalidate="formnovalidate" value="Enviar sin validar"/><br/>
+    </form>
+    <hr>
+    <div>
+        <a href="index.html">Regresar a Inicio</a>
+    </div>
+</body>
+</html>

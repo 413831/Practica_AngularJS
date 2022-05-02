@@ -15,3 +15,18 @@ ol li::before{
 ol lo::after{
     content: '.';
 }
+
+h1{
+    color: #f72585;
+}
+h2{
+    color: #3f37c9;
+}
+p{
+    color: #457b9d;
+}
+div{
+    border: 10px solid #560bad;
+    background-color: #f1faee;
+    text-align: center;
+}
