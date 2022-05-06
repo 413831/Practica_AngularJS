@@ -1,6 +1,41 @@
 h1{
     text-align: center;
-    color: crimson;
+    color: #457b9d;
+}
+
+div.contenedor_inline{
+    width: 80%;
+    height: 20%;
+    overflow: auto;
+    margin: auto;
+    border: 3px dashed #a8dadc;
+}
+span{
+    font-weight: bolder;
+    font-style: italic;
+    font-size: larger;
+    background-color:  #a8dadc;
+    border: 1px solid #457b9d;
+    height: 50px;
+    padding: 5px;
+    display: inline-block;
+}
+
+.menu{
+    list-style-type: none;
+    text-align: center;
+}
+
+.menu li{
+    display: inline-block;
+    padding: 15px;
+    margin: 20px;
+    background-color: #e63946;
+    border-radius: 5px;
+}
+a{
+    text-decoration: none;
+    color: beige;
 }
 
 div.relativo{
@@ -36,6 +71,52 @@ div.contenedor{
     border: 3px dashed greenyellow;
     width: 30%;
     margin: auto;
+}
+
+div.contenedor_izquierda{
+    position: relative;
+    border: 3px dashed greenyellow;
+    width: 30%;
+    height: 100px;
+    overflow: auto;
+    float: left;
+}
+
+div.contenedor_derecha{
+    position: relative;
+    border: 3px dashed greenyellow;
+    width: 30%;
+    height: 100px;
+    overflow: auto;
+}
+
+div.contenedor.flotado{
+    float: left;
+}
+
+div.contenedor.flotado.contenedor1{
+    border: 3px dashed greenyellow;
+}
+
+div.contenedor.flotado.contenedor2{
+    border: 3px dashed cornflowerblue;
+    float: right;
+}
+div.contenedor.contenedor3{
+    clear: both;
+    border: 3px dashed darkorange;
+    margin: auto;
+}
+
+div.contenedor_overflow{
+    border: 3px dashed greenyellow;
+    width: 30%;
+    height: 50px;
+    margin: auto;
+    /*overflow: visible;*/
+    /*overflow: hidden;*/
+    /*overflow: scroll;*/
+    overflow: auto;
 }
 
 img.imagen{
